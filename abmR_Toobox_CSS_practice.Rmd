@@ -1,5 +1,5 @@
 ---
-title: "ambR_Toolbox_CSS"
+title: "ambR_Toolbox_CSS_practice"
 output: html_document
 date: "2025-11-16"
 ---
@@ -10,20 +10,42 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+This is a practice exercise of the Chapter from Toolbox CSS written by Felix Lennert on 2023-01-16.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Note: When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r cars}
-summary(cars)
+example <- matrix(sample(0:2, 10*10, replace = TRUE, prob = c(0.4, 0.3, 0.3)), ncol = 10) 
+print(example)
+
+# prob is normalized to 1; the number of prob vectors should be equal to number of elements
+
+# find the frequency of value "1" in the 10*10 matrix 
+sum(example[, 1] == 1)    # in the first column
+
+# find the frequency of value "1" in all columns of a matrix
+colSums(example == 1)
+
+# Total sum of freuqencies of value "1"
+sum(colSums(example == 1))
+sum(colSums(example == 0))
+sum(colSums(example == 2))
+
+# the one below is for the values along the row
+sum(example[1, ] == 1)
+
+image(example, col = c("black","red","green"), axes = FALSE)
+# the prob should sum to 1 (normalized to 1)
 ```
 
-## Including Plots
+## Functions
 
-You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
-plot(pressure)
+sum_numbers <- function(a, b) {
+  return(a + b)
+}
+sum_numbers(5, 3)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
